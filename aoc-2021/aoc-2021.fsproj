@@ -12,10 +12,10 @@
         <Compile Include="InputReader.fs" />
         <Compile Include="InputReader.Tests.fs" />
         <Content Include="sample-text-input">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Content Include="sample-number-input">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
         <Compile Include="2020\03\Day3.fs" />
         <Compile Include="2020\03\Day3.Test.fs" />
