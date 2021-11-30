@@ -1,4 +1,4 @@
-module Day2_Tests
+module aoc_2020.Day2_Tests
 
 open Xunit
 open aoc_2020.Day2

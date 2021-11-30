@@ -1,4 +1,4 @@
-module Day3_Test
+module aoc_2020.Day3_Test
 
 open Xunit
 open InputReader
