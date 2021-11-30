@@ -1,4 +1,4 @@
-module Day3
+module aoc_2020.Day3
 
 let parseRowsAndColumns input =
     (List.length input, Seq.length input.Head)

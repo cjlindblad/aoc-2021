@@ -1,4 +1,4 @@
-module Day1
+module aoc_2020.Day1
 
 let part1 entries =
     [ for x in entries do

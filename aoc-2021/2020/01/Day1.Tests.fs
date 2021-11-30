@@ -2,7 +2,7 @@ module Day1_Tests
 
 open Xunit
 open InputReader
-open Day1
+open aoc_2020.Day1
 
 [<Fact>]
 let ``Solves part 1 with sample input`` () =

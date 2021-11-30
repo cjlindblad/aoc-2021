@@ -2,7 +2,7 @@ module Day3_Test
 
 open Xunit
 open InputReader
-open Day3
+open aoc_2020.Day3
 
 [<Fact>]
 let ``Gets rows and columns for some input`` () =

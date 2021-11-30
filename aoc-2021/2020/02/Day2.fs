@@ -1,4 +1,4 @@
-module Day2
+module aoc_2020.Day2
 
 open System.Text.RegularExpressions
 
