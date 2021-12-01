@@ -37,13 +37,13 @@ let ``Find the number of trees for a slope`` () =
 [<Fact>]
 let ``Solves part 1`` () =
     let result =
-        readLines "./2020/03/input"
+        readLines "./2020-examples/03/input"
         |> part1
     Assert.Equal(153, result)
     
 [<Fact>]
 let ``Solves part 2`` () =
     let result =
-        readLines "./2020/03/input"
+        readLines "./2020-examples/03/input"
         |> part2
     Assert.Equal<int64>(2421944712L, result)

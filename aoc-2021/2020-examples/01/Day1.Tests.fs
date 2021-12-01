@@ -12,12 +12,12 @@ let ``Solves part 1 with sample input`` () =
 
 [<Fact>]
 let ``Solves part 1 with real input`` () =
-    let input = readNumberLines "./2020/01/input"
+    let input = readNumberLines "./2020-examples/01/input"
     let result = part1 input
     Assert.Equal(955584, result)
 
 [<Fact>]
 let ``Solves part 2 with real input`` () =
-    let input = readNumberLines "./2020/01/input"
+    let input = readNumberLines "./2020-examples/01/input"
     let result = part2 input
     Assert.Equal(287503934, result)

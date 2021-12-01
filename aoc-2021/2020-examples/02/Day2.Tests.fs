@@ -31,7 +31,7 @@ let ``Can determine if an input line contains a valid password according to part
 [<Fact>]
 let ``Solves part 1`` () =
     let result =
-        readLines "./2020/02/input"
+        readLines "./2020-examples/02/input"
         |> part1
 
     Assert.Equal(396, result)
@@ -50,7 +50,7 @@ let ``Is valid part 2`` () =
 [<Fact>]
 let ``Solves part 2`` () =
     let result =
-        readLines "./2020/02/input"
+        readLines "./2020-examples/02/input"
         |> part2
 
     Assert.Equal(428, result)
