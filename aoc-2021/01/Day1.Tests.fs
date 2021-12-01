@@ -6,10 +6,10 @@ open InputReader
 
 [<Fact>]
 let ``Finds numbers in a list that is larger than the previous number`` () =
-    let input = [199;200;208;210;200;207;240;269;260;263]
+    let input = [ 199; 200; 208; 210; 200; 207; 240; 269; 260; 263 ]
     let result = findIncreasingNumbers input
-    let expected = [200;208;210;207;240;269;263]
-    Assert.Equal<int list>(expected, result)
+    let expected = [ 200; 208; 210; 207; 240; 269; 263 ]
+    Assert.Equal(expected, result)
 
 [<Fact>]
 let ``Solves part 1`` () =

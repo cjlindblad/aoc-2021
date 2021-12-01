@@ -5,7 +5,6 @@ let findIncreasingNumbers numbers =
     |> Seq.pairwise
     |> Seq.filter (fun (a, b) -> b > a)
     |> Seq.map snd
-    |> Seq.toList
 
 let part1 input =
     input
