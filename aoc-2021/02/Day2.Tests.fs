@@ -6,28 +6,18 @@ open InputReader
 
 [<Fact>]
 let ``Applies forward instruction`` () =
-    let result = applyInstruction (0, 0) ("forward", 5)
+    let result = applyInstructionPart1 (0, 0) ("forward", 5)
     Assert.Equal((5, 0), result)
 
 [<Fact>]
 let ``Applies up instruction`` () =
-    let result = applyInstruction (0, 0) ("up", 5)
+    let result = applyInstructionPart1 (0, 0) ("up", 5)
     Assert.Equal((0, -5), result)
 
 [<Fact>]
 let ``Applies down instruction`` () =
-    let result = applyInstruction (0, 0) ("down", 5)
+    let result = applyInstructionPart1 (0, 0) ("down", 5)
     Assert.Equal((0, 5), result)
-
-[<Fact>]
-let ``Applies list of instructions`` () =
-    let instructions = [
-        ("down", 5)
-        ("up", 1)
-        ("forward", 3)
-    ]
-    let result = applyInstructions instructions
-    Assert.Equal((3, 4), result)
 
 [<Fact>]
 let ``Solves part 1 with test input`` () =
