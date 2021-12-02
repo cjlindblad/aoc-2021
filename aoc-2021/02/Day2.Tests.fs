@@ -6,17 +6,17 @@ open InputReader
 
 [<Fact>]
 let ``Applies forward instruction part 1`` () =
-    let result = applyInstructionPart1 (0, 0) ("forward", 5)
+    let result = applyCommandPart1 (0, 0) ("forward", 5)
     Assert.Equal((5, 0), result)
 
 [<Fact>]
 let ``Applies up instruction part 1`` () =
-    let result = applyInstructionPart1 (0, 0) ("up", 5)
+    let result = applyCommandPart1 (0, 0) ("up", 5)
     Assert.Equal((0, -5), result)
 
 [<Fact>]
 let ``Applies down instruction part 1`` () =
-    let result = applyInstructionPart1 (0, 0) ("down", 5)
+    let result = applyCommandPart1 (0, 0) ("down", 5)
     Assert.Equal((0, 5), result)
 
 [<Fact>]
