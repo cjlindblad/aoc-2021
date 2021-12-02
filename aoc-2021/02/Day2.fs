@@ -22,10 +22,10 @@ let part1 input =
     input
     |> Seq.map parseLine
     |> Seq.fold applyInstructionPart1 (0, 0)
-    |> (fun (a, b) -> a * b)
+    |> (fun (horizontal, depth) -> horizontal * depth)
 
 let part2 input =
     input
     |> Seq.map parseLine
     |> Seq.fold applyInstructionPart2 (0, 0, 0)
-    |> (fun (a, b, _) -> a * b)
+    |> (fun (horizontal, depth, _) -> horizontal * depth)
