@@ -27,3 +27,72 @@ let part1 (input: string seq) =
 
     Convert.ToInt32(binary, 2)
     * Convert.ToInt32(flippedBinary, 2)
+
+let oxygenGeneratorRating (input: string list) =
+    let binaryString =
+        input
+        |> Seq.transpose
+        |> Seq.fold (fun (remainingLines: seq<string>, index: int) _ ->
+            match Seq.length remainingLines with
+            | 1 -> (remainingLines, index + 1)
+            | _ ->
+                let currentColumn =
+                    remainingLines
+                    |> Seq.transpose
+                    |> Seq.skip index
+                    |> Seq.head
+                let zeroes =
+                    currentColumn
+                    |> Seq.filter (fun c -> c = '0')
+                    |> Seq.length
+                let ones =
+                    currentColumn
+                    |> Seq.filter (fun c -> c = '1')
+                    |> Seq.length
+                let charToMatch = if ones >= zeroes then '1' else '0'
+                let nextLines =
+                    remainingLines
+                    |> Seq.filter (fun line ->
+                        line[index] = charToMatch)
+                (nextLines, index + 1)) (input, 0)
+        |> fst
+        |> Seq.head
+    
+    Convert.ToInt32(binaryString, 2)
+
+let co2ScrubberRating (input: string list) =
+    let binaryString =
+        input
+        |> Seq.transpose
+        |> Seq.fold (fun (remainingLines: seq<string>, index: int) _ ->
+            match Seq.length remainingLines with
+            | 1 -> (remainingLines, index + 1)
+            | _ ->
+                let currentColumn =
+                    remainingLines
+                    |> Seq.transpose
+                    |> Seq.skip index
+                    |> Seq.head
+                let zeroes =
+                    currentColumn
+                    |> Seq.filter (fun c -> c = '0')
+                    |> Seq.length
+                let ones =
+                    currentColumn
+                    |> Seq.filter (fun c -> c = '1')
+                    |> Seq.length
+                let charToMatch = if zeroes <= ones then '0' else '1'
+                let nextLines =
+                    remainingLines
+                    |> Seq.filter (fun line ->
+                        line[index] = charToMatch)
+                (nextLines, index + 1)) (input, 0)
+        |> fst
+        |> Seq.head
+    
+    Convert.ToInt32(binaryString, 2)
+
+let part2 input =
+    let oxygenRating = oxygenGeneratorRating input
+    let co2rating = co2ScrubberRating input
+    oxygenRating * co2rating
