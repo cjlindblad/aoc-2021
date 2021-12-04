@@ -14,10 +14,16 @@ let binaryString (input: string seq) =
 
 let flip (input: string) =
     input
-    |> Seq.map (fun c -> if c = '0' then "1" else "0")
+    |> Seq.map
+        (fun c ->
+            match c with
+            | '0' -> "1"
+            | _ -> "0")
     |> String.concat ""
 
 let part1 (input: string seq) =
     let binary = binaryString input
     let flippedBinary = flip binary
-    Convert.ToInt32(binary, 2) * Convert.ToInt32(flippedBinary, 2)
+
+    Convert.ToInt32(binary, 2)
+    * Convert.ToInt32(flippedBinary, 2)
