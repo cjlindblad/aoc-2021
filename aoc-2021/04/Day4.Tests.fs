@@ -78,4 +78,16 @@ let ``Solves part 1 with test input`` () =
 let ``Solves part 1`` () =
     let input = readText "./04/input"
     let result = part1 input
-    Assert.Equal(0, result)
+    Assert.Equal(38594, result)
+
+[<Fact>]
+let ``Solves part 2 with test input`` () =
+    let input = readText "./04/test-input"
+    let result = part2 input
+    Assert.Equal(1924, result)
+
+[<Fact>]
+let ``Solves part 2`` () =
+    let input = readText "./04/input"
+    let result = part2 input
+    Assert.Equal(21184, result)

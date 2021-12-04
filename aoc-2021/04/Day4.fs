@@ -61,15 +61,50 @@ let part1 input : int =
             (fun (bingoCards, currentNumber, foundWinner) cur ->
                 match foundWinner with
                 | true -> (bingoCards, currentNumber, foundWinner)
-                | false -> 
+                | false ->
                     let nextBingoCards = bingoCards |> Seq.map (markNumber cur)
                     let foundWinner = nextBingoCards |> Seq.exists isBingo
                     (nextBingoCards, cur, foundWinner))
             (bingoCards, numbers |> Seq.head, false)
-    
+
     let bingoCards, winningNumber, _ = winningBingoCardWithDrawnNumber
 
-    let winningBingoCard = bingoCards |> Seq.filter isBingo |> Seq.head
+    let winningBingoCard =
+        bingoCards |> Seq.filter isBingo |> Seq.head
+
+    winningNumber
+    * (unmarkedNumbers winningBingoCard |> Seq.sum)
+
+let part2 input =
+    let numbers = parseNumbers input
+    let bingoCards = parseBingoCards input
+
+    let winningBingoCardWithDrawnNumber =
+        numbers
+        |> Seq.fold
+            (fun (remainingBingoCards, currentNumber, foundLastWinner) cur ->
+                match foundLastWinner with
+                | true -> (remainingBingoCards, currentNumber, foundLastWinner)
+                | false ->
+                    let markedBingoCards =
+                        remainingBingoCards |> Seq.map (markNumber cur)
+
+                    let foundLastWinner = markedBingoCards |> Seq.forall isBingo
+
+                    let nextBingoCards =
+                        match foundLastWinner with
+                        | false ->
+                            markedBingoCards
+                            |> Seq.filter (fun card -> not (isBingo card))
+                        | true -> markedBingoCards
+
+                    (nextBingoCards, cur, foundLastWinner))
+            (bingoCards, numbers |> Seq.head, false)
+
+    let bingoCards, winningNumber, _ = winningBingoCardWithDrawnNumber
+
+    let winningBingoCard =
+        bingoCards |> Seq.filter isBingo |> Seq.head
 
     winningNumber
     * (unmarkedNumbers winningBingoCard |> Seq.sum)
