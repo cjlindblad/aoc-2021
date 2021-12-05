@@ -11,6 +11,9 @@ let parseLine input =
     let x2 = matches.Groups[ 3 ].Value |> int
     let y2 = matches.Groups[ 4 ].Value |> int
 
+    ((x1, y1), (x2, y2))
+
+let makeLinesPart1 ((x1, y1), (x2, y2)) =
     if x1 = x2 then
         seq { for i in Seq.min [ y1; y2 ] .. Seq.max [ y1; y2 ] -> (x1, i) }
     elif y1 = y2 then
@@ -18,15 +21,7 @@ let parseLine input =
     else
         Seq.empty
 
-let parseLinePart2 input =
-    let matches =
-        Regex.Match(input, @"(\d+),(\d+) -> (\d+),(\d+)")
-
-    let x1 = matches.Groups[ 1 ].Value |> int
-    let y1 = matches.Groups[ 2 ].Value |> int
-    let x2 = matches.Groups[ 3 ].Value |> int
-    let y2 = matches.Groups[ 4 ].Value |> int
-
+let makeLinesPart2 ((x1, y1), (x2, y2)) =
     if x1 = x2 then
         seq { for i in Seq.min [ y1; y2 ] .. Seq.max [ y1; y2 ] -> (x1, i) }
     elif y1 = y2 then
@@ -41,14 +36,13 @@ let overlappingPoints lines =
     |> Seq.filter (fun x -> snd x >= 2)
     |> Seq.map fst
 
-let part1 input =
+let solver lineMaker input =
     input
     |> Seq.map parseLine
+    |> Seq.map lineMaker
     |> overlappingPoints
     |> Seq.length
 
-let part2 input =
-    input
-    |> Seq.map parseLinePart2
-    |> overlappingPoints
-    |> Seq.length
+let part1: (seq<string> -> int) = solver makeLinesPart1
+
+let part2: (seq<string> -> int) = solver makeLinesPart2
