@@ -6,13 +6,13 @@ let parseInput (input: string) =
     |> Seq.toList
 
 let shift list =
-    let length = Seq.length list
+    let length = List.length list
     list |> List.permute (fun index -> (index + length - 1) % length)
 
 let rank list =
     list
     |> List.countBy id
-    |> Map.ofSeq
+    |> Map.ofList
 
 let solver input days =
     let parsedInput = parseInput input
