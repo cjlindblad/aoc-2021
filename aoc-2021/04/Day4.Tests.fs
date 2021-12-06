@@ -86,7 +86,7 @@ let ``Solves part 2 with test input`` () =
     let result = part2 input
     Assert.Equal(1924, result)
 
-[<Fact>]
+[<Fact (Skip = "A bit slow")>]
 let ``Solves part 2`` () =
     let input = readText "./04/input"
     let result = part2 input
