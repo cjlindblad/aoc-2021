@@ -1,35 +1,34 @@
 module Day6
 
-open System.Collections.Generic
+let parseInput (input: string) =
+    input.Split(",")
+    |> Seq.map int
+    |> Seq.toList
 
-let parseInput (input: string) = input.Split(",") |> Array.map int
+let shift list =
+    let length = Seq.length list
+    list |> List.permute (fun index -> (index + length - 1) % length)
 
-let memoize f =
-    let cache = Dictionary<_, _>()
-
-    fun c ->
-        let exist, value = cache.TryGetValue(c)
-
-        match exist with
-        | true -> value
-        | _ ->
-            let value = f c
-            cache.Add(c, value)
-            value
-
-let rec solve (day, timer, goal) =
-    if goal - day < timer then
-        1L
-    else
-        let nextDay = day + timer + 1
-
-        (solve (nextDay, 6, goal))
-        + (solve (nextDay, 8, goal))
+let rank list =
+    list
+    |> List.countBy id
+    |> Map.ofSeq
 
 let solver input days =
-    let initialState = parseInput input
-    let memoedSolve = memoize solve
-
-    initialState
-    |> Seq.map (fun x -> memoedSolve (0, x, (days - 1)))
-    |> Seq.sum
+    let parsedInput = parseInput input
+    let rankedInput = rank parsedInput
+    let initialState =
+        List.replicate 9 0L
+        |> List.mapi (fun index value ->
+                     match rankedInput.ContainsKey index with
+                     | true -> int64 rankedInput[index]
+                     | _ -> value)
+        
+    [1..days]
+    |> List.fold (fun acc _ ->
+        let shiftedState = shift acc
+        (shiftedState |> List.take 6)
+            @ [ shiftedState[8] + shiftedState[6] ]
+            @ (shiftedState |> List.skip 7)
+        ) initialState
+    |> List.sum

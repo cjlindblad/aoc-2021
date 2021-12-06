@@ -16,7 +16,7 @@ let ``Solves part 1`` () =
     let result = solver input 80
     Assert.Equal(352195L, result)
 
-[<Fact (Skip = "Tooo slow")>]
+[<Fact>]
 let ``Solves part 2`` () =
     let input = readLines "./06/input" |> Seq.head
     let result = solver input 256
