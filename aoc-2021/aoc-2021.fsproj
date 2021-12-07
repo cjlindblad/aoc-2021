@@ -62,6 +62,7 @@
         <Content Include="06\input">
           <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
+        <Compile Include="07\Day7.fs" />
     </ItemGroup>
 
     <ItemGroup>
