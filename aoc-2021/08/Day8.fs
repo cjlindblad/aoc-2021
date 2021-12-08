@@ -17,25 +17,26 @@ let part1 (input: string list) =
 
 let valueForLine (input: string) =
     let testLine = (input.Split " | ")[0]
-    let parts = testLine.Split " " |> Seq.map Set
-    let one = parts |> Seq.find (fun x -> Seq.length x = 2)
-    let four = parts |> Seq.find (fun x -> Seq.length x = 4)
-    let seven = parts |> Seq.find (fun x -> Seq.length x = 3)
-    let eight = parts |> Seq.find (fun x -> Seq.length x = 7)
-    let nine = (parts |> Seq.find (fun part -> part.Count = 6 && (part - four - seven).Count = 1))
-    let six = (parts |> Seq.find (fun part -> part.Count = 6 && (part - one).Count = 5))
-    let three = (parts |> Seq.find (fun part -> part.Count = 5 && (part - one).Count = 3))
-    let two = (parts |> Seq.find (fun part -> part.Count = 5 && (part - nine).Count = 1))
-    let five = (parts |> Seq.find (fun part -> part.Count = 5 && (part - six).Count = 0))
-    let zero = (parts |> Seq.find (fun part -> part.Count = 6 && (part - five).Count = 2))
+    let numbers = testLine.Split " " |> Seq.map Set
+    
+    let one = numbers |> Seq.find (fun x -> x.Count = 2)
+    let four = numbers |> Seq.find (fun x -> x.Count = 4)
+    let seven = numbers |> Seq.find (fun x -> x.Count = 3)
+    let eight = numbers |> Seq.find (fun x -> x.Count = 7)
+    let nine = numbers |> Seq.find (fun x -> x.Count = 6 && (x - four - seven).Count = 1)
+    let six = numbers |> Seq.find (fun x -> x.Count = 6 && (x - one).Count = 5)
+    let three = numbers |> Seq.find (fun x -> x.Count = 5 && (x - one).Count = 3)
+    let two = numbers |> Seq.find (fun x -> x.Count = 5 && (x - nine).Count = 1)
+    let five = numbers |> Seq.find (fun x -> x.Count = 5 && (x - six).Count = 0)
+    let zero = numbers |> Seq.find (fun x -> x.Count = 6 && (x - five).Count = 2)
 
-    let target =
+    let output =
         (input.Split " | ")[1]
         |> (fun x -> x.Split " ")
         |> Seq.map Set
 
-    let value =
-        target
+    let valueString =
+        output
         |> Seq.map (fun x ->
             match x with
             | _ when x = zero -> "0"
@@ -52,7 +53,7 @@ let valueForLine (input: string) =
         |> Seq.map string
         |> String.concat ""
         
-    int value
+    int valueString
 
 let part2 input =
     input
